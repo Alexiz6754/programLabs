@@ -27,18 +27,19 @@ public class M{
 					arr[i][j] = Math.exp((5/Math.abs(x[j])+1)+1);
 				else if (d[i] == 7 || d[i] == 9 || d[i] == 19)
 					arr[i][j] = Math.exp(Math.log(Math.tan(Math.exp(Math.abs(x[j]))))/3);
-					//При Math.pow(1/3) будет возвращать 1, здесь могут быть NaN/infinity (0 возвращает тангенс))
+					//В Math.log() из Math.tan() может попадать отрицательное число, что приводит к появлению NaN
 				else
 					arr[i][j] = Math.asin(Math.sin(Math.pow(Math.pow(Math.E,Math.tan(x[j])),4/(Math.pow(Math.pow(x[j]/2,3),1/3)+0.25))));	
 					//Все верно, но может улететь к довольно большому числу из-за возведения в большую степень
 			}
 		}
 		//Счет всего и вся
+		
 		System.out.format(BLUE);
 		for (int i = 0;i < 11; ++i)
 			System.out.format("%16d",(i+1));
-			//Вывод номеров колонок для таблички
 		printLine();
+		
 		for (int i = 0;i < 7;++i){
 			System.out.print(String.format(BLUE) + (i+1) + "     ");
 			for (int j = 0;j < 11;++j){
@@ -65,7 +66,7 @@ public class M{
 
 		System.out.print(BLUE);
 		printLine();
-		System.out.print(RESET);
+		System.out.print(RESET);//Чтобы оставить консоли адекватный цвет
 		//Красивенький вывод
 	}
 
